@@ -1,0 +1,32 @@
+{
+  "name": "hacknc2019",
+  "private": true,
+  "scripts": {
+    "start": "meteor run",
+    "test": "meteor test --once --driver-package meteortesting:mocha",
+    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "visualize": "meteor --production --extra-packages bundle-visualizer"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.3.4",
+    "@material-ui/core": "^4.5.1",
+    "@material-ui/icons": "^4.5.1",
+    "@material-ui/styles": "^4.5.0",
+    "compromise": "^11.14.3",
+    "downshift": "^3.3.4",
+    "lodash": "^4.17.15",
+    "meteor-node-stubs": "^0.4.1",
+    "natural": "^0.6.3",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
+    "react-spinners-kit": "^1.9.0",
+    "styled-components": "^4.4.0"
+  },
+  "meteor": {
+    "mainModule": {
+      "client": "client/main.jsx",
+      "server": "server/main.js"
+    },
+    "testModule": "tests/main.js"
+  }
+}

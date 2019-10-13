@@ -56,7 +56,9 @@ export default function IntegrationDownshift(props1) {
 
 
     console.log("Search Bar Props:", props1)
+
     const suggestions = props1.suggestions;
+
 
     function renderInput(inputProps) {
         const { InputProps, classes, ref, ...other } = inputProps;
@@ -112,7 +114,8 @@ export default function IntegrationDownshift(props1) {
 
         return inputLength === 0 && !showEmpty
             ? []
-            : suggestions.filter(suggestion => {
+            : suggestions[0].filter(suggestion => {
+                //console.log(suggestion);
                 const keep =
                     count < 5 && suggestion.label.slice(0, inputLength).toLowerCase() === inputValue;
 

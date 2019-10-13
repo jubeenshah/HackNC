@@ -30,15 +30,27 @@ Meteor.methods({
         //console.log("Topic:", i);
         topics[i.normal.trim().toLowerCase()] = true;
       })
+
+      var itemSteps = item.steps.replace("['", "").replace("']").split("', '");
+      var itemTags = item.tags.replace("['", "").replace("']").split("', '").map(tag=>{
+        return tag.replace('undefined', '')
+      });
+      var itemIngredients = item.ingredients.replace("['", "").replace("']").split("', '");
+      var itemNutrition = item.nutrition.replace("[", "").replace("]").split(', ').map(i=>{
+        return parseInt(i);
+      });
+
+      
       Meteor.call("recipes.post", {        
         recipe_id: item.id,
         name: item.name,
         description: item.description,
-       // tags: JSON.parse(item.tags),
-       // steps: JSON.parse(item.steps),
+        minutes: item.minutes,
+       tags: itemTags,
+       steps:itemSteps,
         n_steps: item.n_steps,
-        //nutrition: JSON.parse(item.nutrition),
-       // ingredients: JSON.parse(item.ingredients),
+        nutrition: itemNutrition,
+       ingredients: itemIngredients,
         n_ingredients: item.n_ingredients,
         topics: Object.keys(topics).concat(natural.PorterStemmer.tokenizeAndStem(item.description))
       });
@@ -51,6 +63,7 @@ Meteor.methods({
   AddReviews(dataset) {
 
     dataset.map(item => {
+
       //console.log("Review:", item)
       var doc = nlp(item.review);
       let topics = {};
@@ -86,8 +99,8 @@ Meteor.startup(() => {
   console.log("=====================================");
   console.log(recipes.results[Math.floor(Math.random() * recipes.results.length)]); */
  
-  Meteor.call("AddRecipes", recipes.results);
-  Meteor.call("AddReviews", reviews.results);
+ // Meteor.call("AddRecipes", recipes.results);
+ //Meteor.call("AddReviews", reviews.results); 
 
 
 

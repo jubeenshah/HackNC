@@ -21,6 +21,39 @@ Meteor.methods({
         }
 
 
-    }
+    },
+    "review.filterByTopic"(q){
+        var reviews = [];
+
+        var doc = nlp(q);
+        var topics = {};
+        doc.topics().data().map(i => {
+          //console.log("Topic:", i);
+          topics[i.normal.trim().toLowerCase()] = true;
+        });
+        topics = Object.keys(topics).concat(natural.PorterStemmer.tokenizeAndStem(q));
+
+        Reviews.find({}).fetch().map(item => {
+           
+            var points = 0;
+           
+            for (let i = 0; i < item.topics.length; i++) {
+                if(topics.includes(item.topics[i]) ){
+                    points++;
+                }
+            }
+
+            if (points > 0){
+                reviews.push({...item, score: points})
+            }
+            
+        })
+
+        reviews.sort((a, b) => {
+            return b.score - a.score;
+        })
+
+        return reviews;
+    },
 });
 
