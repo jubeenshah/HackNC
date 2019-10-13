@@ -9,7 +9,7 @@ The project does *sentiment analysis* on the user's input and the reviews from t
 
 ## How we built it
 
-Initially we used python to clean up the data and take only a sample of the 250,000 food recipes and 1.2 million reviews for the recipes from the `[Food.com]`(https://www.kaggle.com/shuyangli94/food-com-recipes-and-user-interactions) dataset. Once we cleaned up the data, took a good representative sample from the original dataset, we started to build our model from which we would *recommend* recipes to the user. 
+Initially we used python to clean up the data and take only a sample of the 250,000 food recipes and 1.2 million reviews for the recipes from the [`Food.com`](https://www.kaggle.com/shuyangli94/food-com-recipes-and-user-interactions) dataset. Once we cleaned up the data, took a good representative sample from the original dataset, we started to build our model from which we would *recommend* recipes to the user. 
 
 We primarily used Javascript for both front end and backend to setup the entire search engine and sentiment analysis for the reviews from the dataset
 
